@@ -1,5 +1,4 @@
-class Book
+class Store
   include Mongoid::Document
   field :name, type: String
-  field :store_id, type: String
 end
