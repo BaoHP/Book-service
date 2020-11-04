@@ -1,17 +1,39 @@
-version: "3.8"
+version: "1"
 services:
   db:
-    image: mongo
+    image: mongo:latest
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  web:
+  books:
+    image: books:dev
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/myapp
+      - .:/books
     ports:
       - "3000:3000"
     depends_on:
       - db
+  stores:
+    image: stores:dev
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/stores
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  reviews:
+    image: reviews:dev
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/reviews
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+        
