@@ -5,7 +5,7 @@ WORKDIR /reviews
 COPY Gemfile /reviews/Gemfile
 COPY Gemfile.lock /reviews/Gemfile.lock
 RUN bundle install
-COPY . /reviews
+COPY . .
 
 EXPOSE 3000
 

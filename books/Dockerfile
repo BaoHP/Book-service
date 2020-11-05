@@ -5,7 +5,7 @@ WORKDIR /books
 COPY Gemfile /books/Gemfile
 COPY Gemfile.lock /books/Gemfile.lock
 RUN bundle install
-COPY . /books
+COPY . .
 
 EXPOSE 3000
 

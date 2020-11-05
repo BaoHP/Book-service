@@ -5,7 +5,7 @@ WORKDIR /stores
 COPY Gemfile /stores/Gemfile
 COPY Gemfile.lock /stores/Gemfile.lock
 RUN bundle install
-COPY . /stores
+COPY . .
 
 EXPOSE 3000
 
