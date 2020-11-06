@@ -9,6 +9,7 @@ class Api::V1::StoresController < ActionController::API
         Rollbar.error(e);
       end
       puts "XXXXXXXXXXXX"
+      puts params[:id]
       puts response
       puts "XXXXXXXXXXXX"
 
