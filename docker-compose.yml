@@ -1,43 +1,58 @@
 version: "3.8"
+
 services:
   db:
     image: mongo:latest
     restart: always
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: root
-    #   MONGO_INITDB_ROOT_PASSWORD: example
+      - ./tmp/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - "27777:27017"
+    networks:
+      - bridge-network
+
   books:
-    image: books:dev
     build: ./books
-    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
+    working_dir: /books
     volumes:
-      - .:/books
+      - ./books:/books
     ports:
       - "5001:3000"
     depends_on:
       - db
+    networks:
+      - bridge-network
+
   stores:
-    image: stores:dev
     build: ./stores
-    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
+    working_dir: /stores
     volumes:
-      - .:/stores
+      - ./stores:/stores
     ports:
       - "5002:3000"
     depends_on:
       - db
+    networks:
+      - bridge-network
+
   reviews:
-    image: reviews:dev
     build: ./reviews
-    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
+    working_dir: /reviews
     volumes:
-      - .:/reviews
+      - ./reviews:/reviews
     ports:
       - "5003:3000"
     depends_on:
       - db
-        
+    networks:
+      - bridge-network
+
+networks:
+  bridge-network:
+    driver: bridge
