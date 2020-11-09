@@ -7,4 +7,9 @@ class Api::V1::ReviewsController < ActionController::API
       
       render json: { results: reviews }.to_json, status: :ok
     end
+    def show
+      review = Review.where(book_id: params[:id])
+
+      render json: { review: review }.to_json, status: :ok
+    end
 end
