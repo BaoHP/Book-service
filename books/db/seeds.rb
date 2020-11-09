@@ -10,5 +10,5 @@ book_names = ["Romantic Spots for Honeymoons",
     "Most Romantic Destinations", 
     "Top Spots for Skiing"]
     book_names.each do |book_name|
-Book.create(name: book_name, store_id: '5fa10a9f7820ee6c473d01ee')
+Book.create(name: book_name, store_id: '5fa89f8c22660b0031779455')
 end
