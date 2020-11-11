@@ -72,7 +72,7 @@ spec:
       serviceAccountName: bookinfo-stores
       containers:
       - name: stores
-        image: docker.io/istio/examples-bookinfo-stores-v1:1.16.2
+        image: hub.docker.com/repository/docker/huaphubao456/book-service_stores:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
@@ -123,7 +123,7 @@ spec:
       serviceAccountName: bookinfo-books
       containers:
       - name: books
-        image: docker.io/istio/examples-bookinfo-books-v1:1.16.2
+        image: hub.docker.com/repository/docker/huaphubao456/book-service_books:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
@@ -174,7 +174,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v1:1.16.2
+        image: hub.docker.com/repository/docker/huaphubao456/book-service_reviews:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -214,7 +214,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v2:1.16.2
+        image: hub.docker.com/repository/docker/huaphubao456/book-service_reviews:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -254,7 +254,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/istio/examples-bookinfo-reviews-v3:1.16.2
+        image: hub.docker.com/repository/docker/huaphubao456/book-service_reviews:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

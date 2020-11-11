@@ -15,8 +15,7 @@ services:
       - bridge-network
 
   books:
-    # build: ./books
-    image: huaphubao456/book-service_books:1.0
+    build: ./books
     command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
     working_dir: /books
     volumes:
@@ -29,8 +28,7 @@ services:
       - bridge-network
 
   stores:
-    # build: ./stores
-    image: huaphubao456/book-service_stores:1.0
+    build: ./stores
     command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
     working_dir: /stores
     volumes:
@@ -43,8 +41,7 @@ services:
       - bridge-network
 
   reviews:
-    # build: ./reviews
-    image: huaphubao456/book-service_reviews:1.0
+    build: ./reviews
     command: bash -c "rm -rf tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -p 3000 -b 0.0.0.0"
     working_dir: /reviews
     volumes:
